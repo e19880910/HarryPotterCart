@@ -19,7 +19,7 @@ namespace HarryPotterCartDLL.Test
 			
 			//act
 			var actual = target.CheckOut();
-			var expected = 100;
+			decimal expected = 100;
 
 			//assert
 			Assert.AreEqual(expected, actual);
@@ -39,7 +39,7 @@ namespace HarryPotterCartDLL.Test
 
 			//act
 			var actual = target.CheckOut();
-			var expected = 190;
+			decimal expected = 190;
 			
 			//assert
 			Assert.AreEqual(expected, actual);
