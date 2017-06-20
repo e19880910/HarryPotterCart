@@ -14,13 +14,13 @@ namespace HarryPotterCartDLL
 
 		public void Buy(UInt32 volumeNo, UInt32 bookCount)
 		{
-			_bookCounts[volumeNo-1] += bookCount;
+			_bookCounts[volumeNo - 1] += bookCount;
 		}
 
 		public object CheckOut()
 		{
-			decimal price = 0;
-			var diffVolumeCount = -1;
+			var price = 0m;
+			var diffVolumeCount = 0;
 			for (int volume = 0; volume < _bookCounts.Length; volume++)
 			{
 				price += _bookCounts[volume] * 100;
@@ -30,7 +30,15 @@ namespace HarryPotterCartDLL
 				}
 			}
 
-			price = price - price * diffVolumeCount * 0.05m;
+			if (diffVolumeCount == 4)
+			{
+				price = price - price * 0.2m;
+			}
+			else
+			{
+				price = price - price * (diffVolumeCount - 1) * 0.05m;
+			}
+			
 
 			return price;
 		}
