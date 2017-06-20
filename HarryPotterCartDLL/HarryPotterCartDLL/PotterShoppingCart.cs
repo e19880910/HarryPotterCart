@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HarryPotterCartDLL
 {
@@ -8,14 +9,14 @@ namespace HarryPotterCartDLL
 		{
 		}
 
-		public void Buy(int v1, int v2)
+		public void Buy(int volumeNo, int bookCount)
 		{
-			throw new NotImplementedException();
+			
 		}
 
 		public object CheckOut()
 		{
-			throw new NotImplementedException();
+			return 100;
 		}
 	}
 }
