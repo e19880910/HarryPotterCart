@@ -17,7 +17,7 @@ namespace HarryPotterCartDLL
 			_bookCounts[volumeNo - 1] += bookCount;
 		}
 
-		public object CheckOut()
+		public decimal CheckOut()
 		{
 			var price = 0m;
 			var diffVolumeCount = 0;
