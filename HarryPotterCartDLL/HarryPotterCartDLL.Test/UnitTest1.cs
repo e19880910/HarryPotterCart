@@ -106,5 +106,27 @@ namespace HarryPotterCartDLL.Test
 		}
 
 
+
+		[TestMethod]
+		public void BuyVolume1_Count1_Volume2_Count1_Volume3_Count2_Return_370()
+		{
+			//arrange
+			var target = new PotterShoppingCart();
+			target.Buy(1, 1);
+			target.Buy(2, 1);
+			target.Buy(3, 2);
+			target.Buy(4, 0);
+			target.Buy(5, 0);
+			
+			//act
+			var actual = target.CheckOut();
+			decimal expected = 370;
+
+			//assert
+			Assert.AreEqual(expected, actual);
+		}
+
+
+
 	}
 }
