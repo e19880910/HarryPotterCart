@@ -30,9 +30,9 @@ namespace HarryPotterCartDLL
 				}
 			}
 
-			if (diffVolumeCount == 4)
+			if (diffVolumeCount >= 4)
 			{
-				price = price - price * 0.2m;
+				price = price - price * diffVolumeCount * 0.05m;
 			}
 			else
 			{
