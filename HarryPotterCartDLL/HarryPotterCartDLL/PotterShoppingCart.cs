@@ -38,32 +38,32 @@ namespace HarryPotterCartDLL
 					}
 				}
 
-				switch (diffVolumeCount)
-				{
-					case 1:
-						discount = 1m;
-						break;
-					case 2:
-						discount = 0.95m;
-						break;
-					case 3:
-						discount = 0.9m;
-						break;
-					case 4:
-						discount = 0.8m;
-						break;
-					case 5:
-						discount = 0.75m;
-						break;
-					default:
-						discount = 1m;
-						break;
-				}
-
+				discount = GetDiscountBy(diffVolumeCount);
 				price += diffVolumeCount * 100 * discount;
 			}
 			
 			return price;
 		}
+
+
+		private decimal GetDiscountBy(int diffVolumeCount)
+		{
+			switch (diffVolumeCount)
+			{
+				case 1:
+					return 1m;
+				case 2:
+					return 0.95m;
+				case 3:
+					return 0.9m;
+				case 4:
+					return 0.8m;
+				case 5:
+					return 0.75m;
+				default:
+					return 1m;
+			}
+		}
+
 	}
 }
