@@ -6,40 +6,63 @@ namespace HarryPotterCartDLL
 	public class PotterShoppingCart
 	{
 		private UInt32[] _bookCounts;
+		private UInt32 _maxBookCount;
 
 		public PotterShoppingCart()
 		{
 			_bookCounts = new UInt32[5];
+			_maxBookCount = 0;
 		}
 
 		public void Buy(UInt32 volumeNo, UInt32 bookCount)
 		{
 			_bookCounts[volumeNo - 1] += bookCount;
+			_maxBookCount = _maxBookCount < _bookCounts[volumeNo - 1]? _bookCounts[volumeNo - 1] : _maxBookCount;
 		}
 
 		public decimal CheckOut()
 		{
 			var price = 0m;
 			var diffVolumeCount = 0;
-			for (int volume = 0; volume < _bookCounts.Length; volume++)
+			var discount = 0m;
+			for (int i = 0; i < _maxBookCount; i++)
 			{
-				price += _bookCounts[volume] * 100;
-				if (_bookCounts[volume] > 0)
+				discount = 0m;
+				diffVolumeCount = 0;
+				for (int volume = 0; volume < _bookCounts.Length; volume++)
 				{
-					diffVolumeCount += 1;
+					if (_bookCounts[volume] > 0)
+					{
+						diffVolumeCount++;
+						_bookCounts[volume]--;
+					}
 				}
-			}
 
-			if (diffVolumeCount >= 4)
-			{
-				price = price - price * diffVolumeCount * 0.05m;
-			}
-			else
-			{
-				price = price - price * (diffVolumeCount - 1) * 0.05m;
+				switch (diffVolumeCount)
+				{
+					case 1:
+						discount = 1m;
+						break;
+					case 2:
+						discount = 0.95m;
+						break;
+					case 3:
+						discount = 0.9m;
+						break;
+					case 4:
+						discount = 0.8m;
+						break;
+					case 5:
+						discount = 0.75m;
+						break;
+					default:
+						discount = 1m;
+						break;
+				}
+
+				price += diffVolumeCount * 100 * discount;
 			}
 			
-
 			return price;
 		}
 	}
